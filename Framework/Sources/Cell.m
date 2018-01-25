@@ -7,7 +7,8 @@
 //
 
 #import "Cell.h"
-#import "Gridlines.swift"
+#import "SpreadsheetView-Swift.h"
+//#import <SpreadsheetView/Sp>
 
 @interface Cell()
 
@@ -16,6 +17,33 @@
 @end
 
 @implementation Cell
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    [self setup];
+    
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    [self setup];
+    
+    return self;
+}
+
+- (void)setup {
+    self.hasBorder = NO;
+    self.backgroundColor = [UIColor whiteColor];
+    self.contentView.frame = self.bounds;
+    self.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self insertSubview:self.contentView atIndex:0];
+}
+
+#pragma mark - public methods
+- (void)prepareForReuse {
+    
+}
 
 #pragma mark - public property
 - (void)setBackgroundView:(UIView *)backgroundView {
@@ -44,6 +72,26 @@
         [self insertSubview:selectedBackgroundView aboveSubview:self.backgroundView];
     } else {
         [self insertSubview:selectedBackgroundView atIndex:0];
+    }
+}
+
+- (void)setIsHighlighted:(BOOL)isHighlighted {
+    _isHighlighted = isHighlighted;
+    self.selectedBackgroundView.alpha = isHighlighted || self.isSelected ? 1 : 0;
+}
+
+- (void)setIsSelected:(BOOL)isSelected {
+    _isSelected = self.isHighlighted;
+    self.selectedBackgroundView.alpha = self.isHighlighted || _isSelected ? 1 : 0;
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    if (animated) {
+        [UIView animateWithDuration:[CATransaction animationDuration] animations:^{
+            self.isSelected = selected;
+        }];
+    } else {
+        self.isSelected = selected;
     }
 }
 

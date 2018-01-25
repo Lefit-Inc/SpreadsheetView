@@ -229,10 +229,10 @@ SWIFT_CLASS("_TtC15SpreadsheetView6Border")
 
 SWIFT_CLASS("_TtC15SpreadsheetView9CellRange")
 @interface CellRange : NSObject
-@property (nonatomic, readonly) NSInteger columnCount SWIFT_DEPRECATED_OBJC("Swift property 'CellRange.columnCount' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
-@property (nonatomic, readonly) NSInteger rowCount SWIFT_DEPRECATED_OBJC("Swift property 'CellRange.rowCount' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
-- (nonnull instancetype)initFrom:(NSIndexPath * _Nonnull)from to:(NSIndexPath * _Nonnull)to SWIFT_DEPRECATED_OBJC("Swift initializer 'CellRange.init(from:to:)' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
-- (BOOL)contains:(CellRange * _Nonnull)cellRange SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_OBJC("Swift method 'CellRange.contains(_:)' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+@property (nonatomic, readonly) NSInteger columnCount;
+@property (nonatomic, readonly) NSInteger rowCount;
+- (nonnull instancetype)initFrom:(NSIndexPath * _Nonnull)from to:(NSIndexPath * _Nonnull)to;
+- (BOOL)contains:(CellRange * _Nonnull)cellRange SWIFT_WARN_UNUSED_RESULT;
 @property (nonatomic, readonly) NSInteger hashValue;
 @property (nonatomic, readonly, copy) NSString * _Nonnull description;
 @property (nonatomic, readonly, copy) NSString * _Nonnull debugDescription;
@@ -283,17 +283,17 @@ SWIFT_CLASS("_TtC15SpreadsheetView15SpreadsheetView")
 /// note:
 /// The data source must adopt the <code>SpreadsheetViewDataSource</code> protocol.
 /// The spreadsheet view maintains a weak reference to the data source object.
-@property (nonatomic, weak) id <SpreadsheetViewDataSource> _Nullable dataSource SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.dataSource' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+@property (nonatomic, weak) id <SpreadsheetViewDataSource> _Nullable dataSource;
 /// The object that acts as the delegate of the spreadsheet view.
 /// note:
 /// The delegate must adopt the <code>SpreadsheetViewDelegate</code> protocol.
 /// The spreadsheet view maintains a weak reference to the delegate object.
 /// The delegate object is responsible for managing selection behavior and interactions with individual items.
-@property (nonatomic, weak) id <SpreadsheetViewDelegate> _Nullable delegate SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.delegate' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+@property (nonatomic, weak) id <SpreadsheetViewDelegate> _Nullable delegate;
 /// The horizontal and vertical spacing between cells.
 /// note:
 /// The default spacing is <code>(1.0, 1.0)</code>. Negative values are not supported.
-@property (nonatomic) CGSize intercellSpacing SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.intercellSpacing' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+@property (nonatomic) CGSize intercellSpacing;
 /// A Boolean value that indicates whether users can select cells in the spreadsheet view.
 /// note:
 /// If the value of this property is <code>true</code> (the default), users can select cells.
@@ -301,7 +301,7 @@ SWIFT_CLASS("_TtC15SpreadsheetView15SpreadsheetView")
 /// you must provide a delegate object and implement the appropriate methods of the <code>SpreadsheetViewDelegate</code> protocol.
 /// seealso:
 /// <code>allowsMultipleSelection</code>
-@property (nonatomic) BOOL allowsSelection SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.allowsSelection' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+@property (nonatomic) BOOL allowsSelection;
 /// A Boolean value that determines whether users can select more than one cell in the spreadsheet view.
 /// note:
 /// This property controls whether multiple cells can be selected simultaneously.
@@ -310,13 +310,13 @@ SWIFT_CLASS("_TtC15SpreadsheetView15SpreadsheetView")
 /// Tapping the cell again removes it from the selection.
 /// seealso:
 /// <code>allowsSelection</code>
-@property (nonatomic) BOOL allowsMultipleSelection SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.allowsMultipleSelection' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+@property (nonatomic) BOOL allowsMultipleSelection;
 /// A Boolean value that controls whether the vertical scroll indicator is visible.
 /// The default value is <code>true</code>. The indicator is visible while tracking is underway and fades out after tracking.
-@property (nonatomic) BOOL showsVerticalScrollIndicator SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.showsVerticalScrollIndicator' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+@property (nonatomic) BOOL showsVerticalScrollIndicator;
 /// A Boolean value that controls whether the horizontal scroll indicator is visible.
 /// The default value is <code>true</code>. The indicator is visible while tracking is underway and fades out after tracking.
-@property (nonatomic) BOOL showsHorizontalScrollIndicator SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.showsHorizontalScrollIndicator' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+@property (nonatomic) BOOL showsHorizontalScrollIndicator;
 /// A Boolean value that controls whether the scroll-to-top gesture is enabled.
 /// note:
 /// The scroll-to-top gesture is a tap on the status bar. When a user makes this gesture,
@@ -326,14 +326,14 @@ SWIFT_CLASS("_TtC15SpreadsheetView15SpreadsheetView")
 /// After the scroll view scrolls to the top of the content view, it sends the delegate a <code>scrollViewDidScrollToTop(_:)</code> message.
 /// The default value of scrollsToTop is <code>true</code>.
 /// On iPhone, the scroll-to-top gesture has no effect if there is more than one scroll view on-screen that has <code>scrollsToTop</code> set to <code>true</code>.
-@property (nonatomic) BOOL scrollsToTop SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.scrollsToTop' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+@property (nonatomic) BOOL scrollsToTop;
 @property (nonatomic) CGPoint centerOffset SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.centerOffset' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
 /// The view that provides the background appearance.
 /// note:
 /// The view (if any) in this property is positioned underneath all of the other content and sized automatically to fill the entire bounds of the spreadsheet view.
 /// The background view does not scroll with the spreadsheet view’s other content. The spreadsheet view maintains a strong reference to the background view object.
 /// This property is nil by default, which displays the background color of the spreadsheet view.
-@property (nonatomic, strong) UIView * _Nullable backgroundView SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.backgroundView' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+@property (nonatomic, strong) UIView * _Nullable backgroundView;
 - (void)safeAreaInsetsDidChange SWIFT_AVAILABILITY(ios,introduced=11.0);
 /// Returns an array of visible cells currently displayed by the spreadsheet view.
 /// note:
@@ -341,27 +341,27 @@ SWIFT_CLASS("_TtC15SpreadsheetView15SpreadsheetView")
 ///
 /// returns:
 /// An array of <code>Cell</code> objects. If no cells are visible, this method returns an empty array.
-@property (nonatomic, readonly, copy) NSArray<Cell *> * _Nonnull visibleCells SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.visibleCells' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+@property (nonatomic, readonly, copy) NSArray<Cell *> * _Nonnull visibleCells;
 /// An array of the visible items in the collection view.
 /// note:
 /// The value of this property is a sorted array of IndexPath objects, each of which corresponds to a visible cell in the spreadsheet view.
 /// If there are no visible items, the value of this property is an empty array.
 /// seealso:
 /// <code>visibleCells</code>
-@property (nonatomic, readonly, copy) NSArray<NSIndexPath *> * _Nonnull indexPathsForVisibleItems SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.indexPathsForVisibleItems' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
-@property (nonatomic, readonly, copy) NSIndexPath * _Nullable indexPathForSelectedItem SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.indexPathForSelectedItem' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+@property (nonatomic, readonly, copy) NSArray<NSIndexPath *> * _Nonnull indexPathsForVisibleItems;
+@property (nonatomic, readonly, copy) NSIndexPath * _Nullable indexPathForSelectedItem;
 /// The index paths for the selected items.
 /// note:
 /// The value of this property is an array of IndexPath objects, each of which corresponds to a single selected item.
 /// If there are no selected items, the value of this property is nil.
-@property (nonatomic, readonly, copy) NSArray<NSIndexPath *> * _Nonnull indexPathsForSelectedItems SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.indexPathsForSelectedItems' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+@property (nonatomic, readonly, copy) NSArray<NSIndexPath *> * _Nonnull indexPathsForSelectedItems;
 /// A Boolean value that determines whether scrolling is disabled in a particular direction.
 /// note:
 /// If this property is <code>false</code>, scrolling is permitted in both horizontal and vertical directions.
 /// If this property is <code>true</code> and the user begins dragging in one general direction (horizontally or vertically), the scroll view disables scrolling in the other direction.
 /// If the drag direction is diagonal, then scrolling will not be locked and the user can drag in any direction until the drag completes.
 /// The default value is <code>false</code>
-@property (nonatomic) BOOL isDirectionalLockEnabled SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.isDirectionalLockEnabled' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+@property (nonatomic) BOOL isDirectionalLockEnabled;
 /// A Boolean value that controls whether the scroll view bounces past the edge of content and back again.
 /// note:
 /// If the value of this property is <code>true</code>, the scroll view bounces when it encounters a boundary of the content.
@@ -370,35 +370,35 @@ SWIFT_CLASS("_TtC15SpreadsheetView15SpreadsheetView")
 /// The default value is <code>true</code>.
 /// seealso:
 /// <code>alwaysBounceHorizontal</code>, <code>alwaysBounceVertical</code>
-@property (nonatomic) BOOL bounces SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.bounces' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+@property (nonatomic) BOOL bounces;
 /// A Boolean value that determines whether bouncing always occurs when vertical scrolling reaches the end of the content.
 /// note:
 /// If this property is set to true and <code>bounces</code> is <code>true</code>, vertical dragging is allowed even if the content is smaller than the bounds of the scroll view.
 /// The default value is <code>false</code>.
 /// seealso:
 /// <code>alwaysBounceHorizontal</code>
-@property (nonatomic) BOOL alwaysBounceVertical SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.alwaysBounceVertical' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+@property (nonatomic) BOOL alwaysBounceVertical;
 /// A Boolean value that determines whether bouncing always occurs when horizontal scrolling reaches the end of the content view.
 /// note:
 /// If this property is set to <code>true</code> and <code>bounces</code> is <code>true</code>, horizontal dragging is allowed even if the content is smaller than the bounds of the scroll view.
 /// The default value is <code>false</code>.
 /// seealso:
 /// <code>alwaysBounceVertical</code>
-@property (nonatomic) BOOL alwaysBounceHorizontal SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.alwaysBounceHorizontal' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+@property (nonatomic) BOOL alwaysBounceHorizontal;
 /// A Boolean value that determines wheather the row header always sticks to the top.
 /// note:
 /// <code>bounces</code> has to be <code>true</code> and there has to be at least one <code>frozenRow</code>.
 /// The default value is <code>false</code>.
 /// seealso:
 /// <code>stickyColumnHeader</code>
-@property (nonatomic) BOOL stickyRowHeader SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.stickyRowHeader' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+@property (nonatomic) BOOL stickyRowHeader;
 /// A Boolean value that determines wheather the column header always sticks to the top.
 /// note:
 /// <code>bounces</code> has to be <code>true</code> and there has to be at least one <code>frozenColumn</code>.
 /// The default value is <code>false</code>.
 /// seealso:
 /// <code>stickyRowHeader</code>
-@property (nonatomic) BOOL stickyColumnHeader SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.stickyColumnHeader' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+@property (nonatomic) BOOL stickyColumnHeader;
 /// A Boolean value that determines whether paging is enabled for the scroll view.
 /// note:
 /// If the value of this property is <code>true</code>, the scroll view stops on multiples of the scroll view’s bounds when the user scrolls.
@@ -408,21 +408,21 @@ SWIFT_CLASS("_TtC15SpreadsheetView15SpreadsheetView")
 /// note:
 /// If the value of this property is <code>true</code>, scrolling is enabled, and if it is <code>false</code>, scrolling is disabled. The default is <code>true</code>.
 /// When scrolling is disabled, the scroll view does not accept touch events; it forwards them up the responder chain.
-@property (nonatomic) BOOL isScrollEnabled SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.isScrollEnabled' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+@property (nonatomic) BOOL isScrollEnabled;
 /// The style of the scroll indicators.
 /// note:
 /// The default style is <code>default</code>. See <code>UIScrollViewIndicatorStyle</code> for descriptions of these constants.
-@property (nonatomic) UIScrollViewIndicatorStyle indicatorStyle SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.indicatorStyle' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+@property (nonatomic) UIScrollViewIndicatorStyle indicatorStyle;
 /// A floating-point value that determines the rate of deceleration after the user lifts their finger.
 /// note:
 /// Your application can use the <code>UIScrollViewDecelerationRateNormal</code> and UIScrollViewDecelerationRateFast` constants as reference points for reasonable deceleration rates.
-@property (nonatomic) CGFloat decelerationRate SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.decelerationRate' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
-@property (nonatomic, readonly) NSInteger numberOfColumns SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.numberOfColumns' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
-@property (nonatomic, readonly) NSInteger numberOfRows SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.numberOfRows' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
-@property (nonatomic, readonly) NSInteger frozenColumns SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.frozenColumns' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
-@property (nonatomic, readonly) NSInteger frozenRows SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.frozenRows' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
-@property (nonatomic, readonly, copy) NSArray<CellRange *> * _Nonnull mergedCells SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.mergedCells' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
-@property (nonatomic, readonly, strong) UIScrollView * _Nonnull scrollView SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.scrollView' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+@property (nonatomic) CGFloat decelerationRate;
+@property (nonatomic, readonly) NSInteger numberOfColumns;
+@property (nonatomic, readonly) NSInteger numberOfRows;
+@property (nonatomic, readonly) NSInteger frozenColumns;
+@property (nonatomic, readonly) NSInteger frozenRows;
+@property (nonatomic, readonly, copy) NSArray<CellRange *> * _Nonnull mergedCells;
+@property (nonatomic, readonly, strong) UIScrollView * _Nonnull scrollView;
 @property (nonatomic, readonly, strong) UIScrollView * _Nonnull rootView SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.rootView' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
 @property (nonatomic, readonly, strong) UIScrollView * _Nonnull overlayView SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.overlayView' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
 @property (nonatomic, readonly, strong) ScrollView * _Nonnull columnHeaderView SWIFT_DEPRECATED_OBJC("Swift property 'SpreadsheetView.columnHeaderView' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
@@ -438,14 +438,14 @@ SWIFT_CLASS("_TtC15SpreadsheetView15SpreadsheetView")
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 - (void)registerClass:(SWIFT_METATYPE(Cell) _Nonnull)cellClass forCellWithReuseIdentifier:(NSString * _Nonnull)identifier;
 - (void)registerNib:(UINib * _Nonnull)nib forCellWithReuseIdentifier:(NSString * _Nonnull)identifier;
-- (void)reloadData SWIFT_DEPRECATED_OBJC("Swift method 'SpreadsheetView.reloadData()' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+- (void)reloadData;
 - (void)reloadDataIfNeeded SWIFT_DEPRECATED_OBJC("Swift method 'SpreadsheetView.reloadDataIfNeeded()' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
-- (Cell * _Nonnull)dequeueReusableCellWithReuseIdentifier:(NSString * _Nonnull)identifier for:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_OBJC("Swift method 'SpreadsheetView.dequeueReusableCell(withReuseIdentifier:for:)' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
-- (void)deselectItemAt:(NSIndexPath * _Nonnull)indexPath animated:(BOOL)animated SWIFT_DEPRECATED_OBJC("Swift method 'SpreadsheetView.deselectItem(at:animated:)' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
-- (NSIndexPath * _Nullable)indexPathForItemAt:(CGPoint)point SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_OBJC("Swift method 'SpreadsheetView.indexPathForItem(at:)' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
-- (Cell * _Nullable)cellForItemAt:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_OBJC("Swift method 'SpreadsheetView.cellForItem(at:)' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
-- (NSArray<Cell *> * _Nonnull)cellsForItemAt:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_OBJC("Swift method 'SpreadsheetView.cellsForItem(at:)' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
-- (CGRect)rectForItemAt:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT SWIFT_DEPRECATED_OBJC("Swift method 'SpreadsheetView.rectForItem(at:)' uses '@objc' inference deprecated in Swift 4; add '@objc' to provide an Objective-C entrypoint");
+- (Cell * _Nonnull)dequeueReusableCellWithReuseIdentifier:(NSString * _Nonnull)identifier for:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+- (void)deselectItemAt:(NSIndexPath * _Nonnull)indexPath animated:(BOOL)animated;
+- (NSIndexPath * _Nullable)indexPathForItemAt:(CGPoint)point SWIFT_WARN_UNUSED_RESULT;
+- (Cell * _Nullable)cellForItemAt:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+- (NSArray<Cell *> * _Nonnull)cellsForItemAt:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
+- (CGRect)rectForItemAt:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
 @end
 
 

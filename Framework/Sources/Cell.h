@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class Gridlines;
+@class Borders;
+
 @interface Cell : UIView
 
 @property (nonatomic, strong, readonly) UIView *contentView;
@@ -15,5 +18,15 @@
 @property (nonatomic, strong) UIView *selectedBackgroundView;
 @property (nonatomic, assign) BOOL isHighlighted;
 @property (nonatomic, assign) BOOL isSelected;
+
+@property (nonatomic, strong) Gridlines* gridlines;
+@property (nonatomic, strong) Borders* borders;
+
+@property (nonatomic, copy) NSIndexPath *indexPath;
+@property (nonatomic, assign) BOOL hasBorder;
+@property (nonatomic, copy) NSString *reuseIdentifier;
+
+- (void)prepareForReuse;
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated;
 
 @end

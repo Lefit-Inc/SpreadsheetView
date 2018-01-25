@@ -8,12 +8,12 @@
 
 import UIKit
 
-public final class CellRange: NSObject {
+@objc public final class CellRange: NSObject {
     public let from: Location
     public let to: Location
     
-    public let columnCount: Int
-    public let rowCount: Int
+    @objc public let columnCount: Int
+    @objc public let rowCount: Int
     
     var size: CGSize?
     
@@ -22,7 +22,7 @@ public final class CellRange: NSObject {
                   to: Location(row: to.row, column: to.column))
     }
     
-    public convenience init(from: IndexPath, to: IndexPath) {
+    @objc public convenience init(from: IndexPath, to: IndexPath) {
         self.init(from: Location(row: from.row, column: from.column),
                   to: Location(row: to.row, column: to.column))
     }
@@ -42,7 +42,7 @@ public final class CellRange: NSObject {
     //            from.row <= indexPath.row && to.row >= indexPath.row
     //    }
     
-    public func contains(_ cellRange: CellRange) -> Bool {
+    @objc public func contains(_ cellRange: CellRange) -> Bool {
         return from.column <= cellRange.from.column && to.column >= cellRange.to.column &&
             from.row <= cellRange.from.row && to.row >= cellRange.to.row
     }
