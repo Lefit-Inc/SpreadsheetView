@@ -25,13 +25,13 @@ public class SpreadsheetView: UIView {
     ///
     ///   The delegate object is responsible for managing selection behavior and interactions with individual items.
     public weak var delegate: SpreadsheetViewDelegate?
-
+    
     /// The horizontal and vertical spacing between cells.
-    /// 
+    ///
     /// - Note: The default spacing is `(1.0, 1.0)`. Negative values are not supported.
     public var intercellSpacing = CGSize(width: 1, height: 1)
     public var gridStyle: GridStyle = .solid(width: 1, color: .lightGray)
-
+    
     /// A Boolean value that indicates whether users can select cells in the spreadsheet view.
     ///
     /// - Note: If the value of this property is `true` (the default), users can select cells.
@@ -62,7 +62,7 @@ public class SpreadsheetView: UIView {
             }
         }
     }
-
+    
     /// A Boolean value that controls whether the vertical scroll indicator is visible.
     ///
     /// The default value is `true`. The indicator is visible while tracking is underway and fades out after tracking.
@@ -79,12 +79,12 @@ public class SpreadsheetView: UIView {
             overlayView.showsHorizontalScrollIndicator = showsHorizontalScrollIndicator
         }
     }
-
+    
     /// A Boolean value that controls whether the scroll-to-top gesture is enabled.
     ///
     /// - Note: The scroll-to-top gesture is a tap on the status bar. When a user makes this gesture,
     /// the system asks the scroll view closest to the status bar to scroll to the top.
-    /// If that scroll view has `scrollsToTop` set to `false`, its delegate returns false from `scrollViewShouldScrollToTop(_:)`, 
+    /// If that scroll view has `scrollsToTop` set to `false`, its delegate returns false from `scrollViewShouldScrollToTop(_:)`,
     /// or the content is already at the top, nothing happens.
     ///
     /// After the scroll view scrolls to the top of the content view, it sends the delegate a `scrollViewDidScrollToTop(_:)` message.
@@ -97,7 +97,7 @@ public class SpreadsheetView: UIView {
             tableView.scrollsToTop = scrollsToTop
         }
     }
-
+    
     public var circularScrolling: CircularScrollingConfiguration = CircularScrolling.Configuration.none {
         didSet {
             circularScrollingOptions = circularScrolling.options
@@ -113,7 +113,7 @@ public class SpreadsheetView: UIView {
     var circularScrollingOptions = CircularScrolling.Configuration.none.options
     var circularScrollScalingFactor: (horizontal: Int, vertical: Int) = (1, 1)
     var centerOffset = CGPoint.zero
-
+    
     /// The view that provides the background appearance.
     ///
     /// - Note: The view (if any) in this property is positioned underneath all of the other content and sized automatically to fill the entire bounds of the spreadsheet view.
@@ -135,7 +135,7 @@ public class SpreadsheetView: UIView {
             }
         }
     }
-
+    
     #if swift(>=3.2)
     @available(iOS 11.0, *)
     public override func safeAreaInsetsDidChange() {
@@ -145,7 +145,7 @@ public class SpreadsheetView: UIView {
         }
     }
     #endif
-
+    
     /// Returns an array of visible cells currently displayed by the spreadsheet view.
     ///
     /// - Note: This method returns the complete list of visible cells displayed by the collection view.
@@ -156,8 +156,8 @@ public class SpreadsheetView: UIView {
             + Array(cornerView.visibleCells) + Array(tableView.visibleCells)
         return cells.sorted()
     }
-
-
+    
+    
     /// An array of the visible items in the collection view.
     /// - Note: The value of this property is a sorted array of IndexPath objects, each of which corresponds to a visible cell in the spreadsheet view.
     /// If there are no visible items, the value of this property is an empty array.
@@ -166,18 +166,18 @@ public class SpreadsheetView: UIView {
     public var indexPathsForVisibleItems: [IndexPath] {
         return visibleCells.map { $0.indexPath }
     }
-
+    
     public var indexPathForSelectedItem: IndexPath? {
         return Array(selectedIndexPaths).sorted().first
     }
-
+    
     /// The index paths for the selected items.
     /// - Note: The value of this property is an array of IndexPath objects, each of which corresponds to a single selected item.
     /// If there are no selected items, the value of this property is nil.
     public var indexPathsForSelectedItems: [IndexPath] {
         return Array(selectedIndexPaths).sorted()
     }
-
+    
     /// A Boolean value that determines whether scrolling is disabled in a particular direction.
     /// - Note: If this property is `false`, scrolling is permitted in both horizontal and vertical directions.
     /// If this property is `true` and the user begins dragging in one general direction (horizontally or vertically), the scroll view disables scrolling in the other direction.
@@ -188,7 +188,7 @@ public class SpreadsheetView: UIView {
             tableView.isDirectionalLockEnabled = isDirectionalLockEnabled
         }
     }
-
+    
     /// A Boolean value that controls whether the scroll view bounces past the edge of content and back again.
     /// - Note: If the value of this property is `true`, the scroll view bounces when it encounters a boundary of the content.
     /// Bouncing visually indicates that scrolling has reached an edge of the content.
@@ -204,7 +204,7 @@ public class SpreadsheetView: UIView {
             tableView.bounces = newValue
         }
     }
-
+    
     /// A Boolean value that determines whether bouncing always occurs when vertical scrolling reaches the end of the content.
     /// - Note: If this property is set to true and `bounces` is `true`, vertical dragging is allowed even if the content is smaller than the bounds of the scroll view.
     /// The default value is `false`.
@@ -218,7 +218,7 @@ public class SpreadsheetView: UIView {
             tableView.alwaysBounceVertical = newValue
         }
     }
-
+    
     /// A Boolean value that determines whether bouncing always occurs when horizontal scrolling reaches the end of the content view.
     /// - Note: If this property is set to `true` and `bounces` is `true`, horizontal dragging is allowed even if the content is smaller than the bounds of the scroll view.
     /// The default value is `false`.
@@ -232,7 +232,7 @@ public class SpreadsheetView: UIView {
             tableView.alwaysBounceHorizontal = newValue
         }
     }
-
+    
     /// A Boolean value that determines wheather the row header always sticks to the top.
     /// - Note: `bounces` has to be `true` and there has to be at least one `frozenRow`.
     /// The default value is `false`.
@@ -245,11 +245,11 @@ public class SpreadsheetView: UIView {
     ///
     /// - SeeAlso: `stickyRowHeader`
     public var stickyColumnHeader: Bool = false
-
+    
     /// A Boolean value that determines whether paging is enabled for the scroll view.
     /// - Note: If the value of this property is `true`, the scroll view stops on multiples of the scroll view’s bounds when the user scrolls.
     /// The default value is false.
-    public var isPagingEnabled: Bool {
+    @objc public var isPagingEnabled: Bool {
         get {
             return tableView.isPagingEnabled
         }
@@ -257,7 +257,7 @@ public class SpreadsheetView: UIView {
             tableView.isPagingEnabled = newValue
         }
     }
-
+    
     /// A Boolean value that determines whether scrolling is enabled.
     /// - Note: If the value of this property is `true`, scrolling is enabled, and if it is `false`, scrolling is disabled. The default is `true`.
     ///
@@ -271,7 +271,7 @@ public class SpreadsheetView: UIView {
             overlayView.isScrollEnabled = newValue
         }
     }
-
+    
     /// The style of the scroll indicators.
     /// - Note: The default style is `default`. See `UIScrollViewIndicatorStyle` for descriptions of these constants.
     public var indicatorStyle: UIScrollViewIndicatorStyle {
@@ -282,7 +282,7 @@ public class SpreadsheetView: UIView {
             overlayView.indicatorStyle = newValue
         }
     }
-
+    
     /// A floating-point value that determines the rate of deceleration after the user lifts their finger.
     /// - Note: Your application can use the `UIScrollViewDecelerationRateNormal` and UIScrollViewDecelerationRateFast` constants as reference points for reasonable deceleration rates.
     public var decelerationRate: CGFloat {
@@ -293,7 +293,7 @@ public class SpreadsheetView: UIView {
             tableView.decelerationRate = newValue
         }
     }
-
+    
     public var numberOfColumns: Int {
         return layoutProperties.numberOfColumns
     }
@@ -309,47 +309,47 @@ public class SpreadsheetView: UIView {
     public var mergedCells: [CellRange] {
         return layoutProperties.mergedCells
     }
-
+    
     public var scrollView: UIScrollView {
         return overlayView
     }
-
+    
     var layoutProperties = LayoutProperties()
-
+    
     let rootView = UIScrollView()
     let overlayView = UIScrollView()
-
+    
     let columnHeaderView = ScrollView()
     let rowHeaderView = ScrollView()
     let cornerView = ScrollView()
     let tableView = ScrollView()
-
+    
     private var cellClasses = [String: Cell.Type]()
     private var cellNibs = [String: UINib]()
     var cellReuseQueues = [String: ReuseQueue<Cell>]()
     let blankCellReuseIdentifier = UUID().uuidString
-
+    
     var horizontalGridlineReuseQueue = ReuseQueue<Gridline>()
     var verticalGridlineReuseQueue = ReuseQueue<Gridline>()
     var borderReuseQueue = ReuseQueue<Border>()
-
+    
     var highlightedIndexPaths = Set<IndexPath>()
     var selectedIndexPaths = Set<IndexPath>()
     var pendingSelectionIndexPath: IndexPath?
     var currentTouch: UITouch?
-
+    
     private var needsReload = true
-
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-
+    
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-
+    
     private func setup() {
         rootView.frame = bounds
         rootView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -357,14 +357,14 @@ public class SpreadsheetView: UIView {
         rootView.showsVerticalScrollIndicator = false
         rootView.delegate = self
         super.addSubview(rootView)
-
+        
         tableView.frame = bounds
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tableView.autoresizesSubviews = false
         tableView.showsHorizontalScrollIndicator = false
         tableView.showsVerticalScrollIndicator = false
         tableView.delegate = self
-
+        
         columnHeaderView.frame = bounds
         columnHeaderView.frame.size.width = 0
         columnHeaderView.autoresizingMask = [.flexibleHeight]
@@ -373,7 +373,7 @@ public class SpreadsheetView: UIView {
         columnHeaderView.showsVerticalScrollIndicator = false
         columnHeaderView.isHidden = true
         columnHeaderView.delegate = self
-
+        
         rowHeaderView.frame = bounds
         rowHeaderView.frame.size.height = 0
         rowHeaderView.autoresizingMask = [.flexibleWidth]
@@ -382,87 +382,87 @@ public class SpreadsheetView: UIView {
         rowHeaderView.showsVerticalScrollIndicator = false
         rowHeaderView.isHidden = true
         rowHeaderView.delegate = self
-
+        
         cornerView.autoresizesSubviews = false
         cornerView.isHidden = true
         cornerView.delegate = self
-
+        
         overlayView.frame = bounds
         overlayView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         overlayView.autoresizesSubviews = false
         overlayView.isUserInteractionEnabled = false
-
+        
         rootView.addSubview(tableView)
         rootView.addSubview(columnHeaderView)
         rootView.addSubview(rowHeaderView)
         rootView.addSubview(cornerView)
         super.addSubview(overlayView)
-
+        
         [tableView, columnHeaderView, rowHeaderView, cornerView, overlayView].forEach {
             addGestureRecognizer($0.panGestureRecognizer)
             #if swift(>=3.2)
-            if #available(iOS 11.0, *) {
-                $0.contentInsetAdjustmentBehavior = .never
-            }
+                if #available(iOS 11.0, *) {
+                    $0.contentInsetAdjustmentBehavior = .never
+                }
             #endif
         }
     }
-
+    
     @objc(registerClass:forCellWithReuseIdentifier:)
     public func register(_ cellClass: Cell.Type, forCellWithReuseIdentifier identifier: String) {
         cellClasses[identifier] = cellClass
     }
-
+    
     @objc(registerNib:forCellWithReuseIdentifier:)
     public func register(_ nib: UINib, forCellWithReuseIdentifier identifier: String) {
         cellNibs[identifier] = nib
     }
-
+    
     public func reloadData() {
         layoutProperties = resetLayoutProperties()
         circularScrollScalingFactor = determineCircularScrollScalingFactor()
         centerOffset = calculateCenterOffset()
-
+        
         cornerView.layoutAttributes = layoutAttributeForCornerView()
         columnHeaderView.layoutAttributes = layoutAttributeForColumnHeaderView()
         rowHeaderView.layoutAttributes = layoutAttributeForRowHeaderView()
         tableView.layoutAttributes = layoutAttributeForTableView()
-
+        
         cornerView.resetReusableObjects()
         columnHeaderView.resetReusableObjects()
         rowHeaderView.resetReusableObjects()
         tableView.resetReusableObjects()
-
+        
         resetContentSize(of: cornerView)
         resetContentSize(of: columnHeaderView)
         resetContentSize(of: rowHeaderView)
         resetContentSize(of: tableView)
-
+        
         resetScrollViewFrame()
         resetScrollViewArrangement()
-
+        
         if circularScrollingOptions.direction.contains(.horizontally) && tableView.contentOffset.x == 0 {
             scrollToHorizontalCenter()
         }
         if circularScrollingOptions.direction.contains(.vertically) && tableView.contentOffset.y == 0 {
             scrollToVerticalCenter()
         }
-
+        
         needsReload = false
         setNeedsLayout()
     }
-
+    
     func reloadDataIfNeeded() {
         if needsReload {
             reloadData()
         }
     }
-
+    
     private func setNeedsReload() {
         needsReload = true
         setNeedsLayout()
     }
-
+    
     public func dequeueReusableCell(withReuseIdentifier identifier: String, for indexPath: IndexPath) -> Cell {
         if let reuseQueue = cellReuseQueues[identifier] {
             if let cell = reuseQueue.dequeue() {
@@ -491,7 +491,7 @@ public class SpreadsheetView: UIView {
         }
         fatalError("could not dequeue a view with identifier cell - must register a nib or a class for the identifier")
     }
-
+    
     private func resetTouchHandlers(to scrollViews: [ScrollView]) {
         scrollViews.forEach {
             if let _ = dataSource {
@@ -511,22 +511,22 @@ public class SpreadsheetView: UIView {
             }
         }
     }
-
+    
     public func scrollToItem(at indexPath: IndexPath, at scrollPosition: ScrollPosition, animated: Bool) {
         let contentOffset = contentOffsetForScrollingToItem(at: indexPath, at: scrollPosition)
         tableView.setContentOffset(contentOffset, animated: animated)
     }
-
+    
     private func contentOffsetForScrollingToItem(at indexPath: IndexPath, at scrollPosition: ScrollPosition) -> CGPoint {
         let (column, row) = (indexPath.column, indexPath.row)
         guard column < numberOfColumns && row < numberOfRows else {
             fatalError("attempt to scroll to invalid index path: {column = \(column), row = \(row)}")
         }
-
+        
         let columnRecords = columnHeaderView.columnRecords + tableView.columnRecords
         let rowRecords = rowHeaderView.rowRecords + tableView.rowRecords
         var contentOffset = CGPoint(x: columnRecords[column], y: rowRecords[row])
-
+        
         let width: CGFloat
         let height: CGFloat
         if let mergedCell = mergedCell(for: Location(indexPath: indexPath)) {
@@ -536,7 +536,7 @@ public class SpreadsheetView: UIView {
             width = layoutProperties.columnWidthCache[indexPath.column]
             height = layoutProperties.rowHeightCache[indexPath.row]
         }
-
+        
         if circularScrollingOptions.direction.contains(.horizontally) {
             if contentOffset.x > centerOffset.x {
                 contentOffset.x -= centerOffset.x
@@ -544,7 +544,7 @@ public class SpreadsheetView: UIView {
                 contentOffset.x += centerOffset.x
             }
         }
-
+        
         var horizontalGroupCount = 0
         if scrollPosition.contains(.left) {
             horizontalGroupCount += 1
@@ -557,7 +557,7 @@ public class SpreadsheetView: UIView {
             horizontalGroupCount += 1
             contentOffset.x = max(contentOffset.x - tableView.frame.width + width + intercellSpacing.width * 2, 0)
         }
-
+        
         if circularScrollingOptions.direction.contains(.vertically) {
             if contentOffset.y > centerOffset.y {
                 contentOffset.y -= centerOffset.y
@@ -565,7 +565,7 @@ public class SpreadsheetView: UIView {
                 contentOffset.y += centerOffset.y
             }
         }
-
+        
         var verticalGroupCount = 0
         if scrollPosition.contains(.top) {
             verticalGroupCount += 1
@@ -578,7 +578,7 @@ public class SpreadsheetView: UIView {
             verticalGroupCount += 1
             contentOffset.y = max(contentOffset.y - tableView.frame.height + height + intercellSpacing.height * 2, 0)
         }
-
+        
         let distanceFromRightEdge = tableView.contentSize.width - contentOffset.x
         if distanceFromRightEdge < tableView.frame.width {
             contentOffset.x -= tableView.frame.width - distanceFromRightEdge
@@ -587,24 +587,24 @@ public class SpreadsheetView: UIView {
         if distanceFromBottomEdge < tableView.frame.height {
             contentOffset.y -= tableView.frame.height - distanceFromBottomEdge
         }
-
+        
         if horizontalGroupCount > 1 {
             fatalError("attempt to use a scroll position with multiple horizontal positioning styles")
         }
         if verticalGroupCount > 1 {
             fatalError("attempt to use a scroll position with multiple vertical positioning styles")
         }
-
+        
         if contentOffset.x < 0 {
             contentOffset.x = 0
         }
         if contentOffset.y < 0 {
             contentOffset.y = 0
         }
-
+        
         return contentOffset
     }
-
+    
     public func selectItem(at indexPath: IndexPath?, animated: Bool, scrollPosition: ScrollPosition) {
         guard let indexPath = indexPath else {
             deselectAllItems(animated: animated)
@@ -613,7 +613,7 @@ public class SpreadsheetView: UIView {
         guard allowsSelection else {
             return
         }
-
+        
         if !allowsMultipleSelection {
             selectedIndexPaths.remove(indexPath)
             deselectAllItems(animated: animated)
@@ -631,18 +631,18 @@ public class SpreadsheetView: UIView {
             }
         }
     }
-
+    
     public func deselectItem(at indexPath: IndexPath, animated: Bool) {
         cellsForItem(at: indexPath).forEach {
             $0.setSelected(false, animated: animated)
         }
         selectedIndexPaths.remove(indexPath)
     }
-
+    
     private func deselectAllItems(animated: Bool) {
         selectedIndexPaths.forEach { deselectItem(at: $0, animated: animated) }
     }
-
+    
     public func indexPathForItem(at point: CGPoint) -> IndexPath? {
         var row = 0
         var column = 0
@@ -657,21 +657,21 @@ public class SpreadsheetView: UIView {
         } else {
             return nil
         }
-
+        
         row = row % numberOfRows
         column = column % numberOfColumns
-
+        
         let location = Location(row: row, column: column)
         if let mergedCell = mergedCell(for: location) {
             return IndexPath(row: mergedCell.from.row, column: mergedCell.from.column)
         }
         return IndexPath(row: location.row, column: location.column)
     }
-
+    
     private func indexPathForItem(at location: CGPoint, in scrollView: ScrollView) -> IndexPath? {
         let insetX = scrollView.layoutAttributes.insets.x
         let insetY = scrollView.layoutAttributes.insets.y
-
+        
         func isPointInColumn(x: CGFloat, column: Int) -> Bool {
             guard column < scrollView.columnRecords.count else {
                 return false
@@ -688,11 +688,11 @@ public class SpreadsheetView: UIView {
             let maxY = minY + layoutProperties.rowHeightCache[(row + scrollView.layoutAttributes.startRow) % numberOfRows]
             return y >= minY && y <= maxY
         }
-
+        
         let point = convert(location, to: scrollView)
         let column = findIndex(in: scrollView.columnRecords, for: point.x - insetX)
         let row = findIndex(in: scrollView.rowRecords, for: point.y - insetY)
-
+        
         switch (isPointInColumn(x: point.x - insetX, column: column), isPointInRow(y: point.y, row: row)) {
         case (true, true):
             return IndexPath(row: row, column: column)
@@ -713,7 +713,7 @@ public class SpreadsheetView: UIView {
             return nil
         }
     }
-
+    
     public func cellForItem(at indexPath: IndexPath) -> Cell? {
         if let cell = tableView.visibleCells.pairs
             .filter({ $0.key.row == indexPath.row && $0.key.column == indexPath.column })
@@ -741,7 +741,7 @@ public class SpreadsheetView: UIView {
         }
         return nil
     }
-
+    
     public func cellsForItem(at indexPath: IndexPath) -> [Cell] {
         var cells = [Cell]()
         cells.append(contentsOf:
@@ -766,16 +766,16 @@ public class SpreadsheetView: UIView {
         )
         return cells
     }
-
+    
     public func rectForItem(at indexPath: IndexPath) -> CGRect {
         let (column, row) = (indexPath.column, indexPath.row)
         guard column >= 0 && column < numberOfColumns && row >= 0 && row < numberOfRows else {
             return .zero
         }
-
+        
         let columnRecords = columnHeaderView.columnRecords + tableView.columnRecords
         let rowRecords = rowHeaderView.rowRecords + tableView.rowRecords
-
+        
         let origin: CGPoint
         let size: CGSize
         func originFor(column: Int, row: Int) -> CGPoint {
@@ -785,7 +785,7 @@ public class SpreadsheetView: UIView {
         }
         if let mergedCell = mergedCell(for: Location(row: row, column: column)) {
             origin = originFor(column: mergedCell.from.column, row: mergedCell.from.row)
-
+            
             var width: CGFloat = 0
             var height: CGFloat = 0
             for column in mergedCell.from.column...mergedCell.to.column {
@@ -798,15 +798,16 @@ public class SpreadsheetView: UIView {
                           height: height + intercellSpacing.height * CGFloat(mergedCell.rowCount - 1))
         } else {
             origin = originFor(column: column, row: row)
-
+            
             let width = layoutProperties.columnWidthCache[column]
             let height = layoutProperties.rowHeightCache[row]
             size = CGSize(width: width, height: height)
         }
         return CGRect(origin: origin, size: size)
     }
-
+    
     func mergedCell(for indexPath: Location) -> CellRange? {
         return layoutProperties.mergedCellLayouts[indexPath]
     }
 }
+

@@ -11,7 +11,7 @@ import UIKit
 /// The `SpreadsheetViewDelegate` protocol defines methods that allow you to manage the selection and
 /// highlighting of cells in a spreadsheet view and to perform actions on those cells.
 /// The methods of this protocol are all optional.
-public protocol SpreadsheetViewDelegate: class {
+@objc public protocol SpreadsheetViewDelegate {
     /// Asks the delegate if the cell should be highlighted during tracking.
     /// - Note: As touch events arrive, the spreadsheet view highlights cells in anticipation of the user selecting them.
     ///   As it processes those touch events, the collection view calls this method to ask your delegate if a given cell should be highlighted.
@@ -81,13 +81,14 @@ public protocol SpreadsheetViewDelegate: class {
     ///   - indexPath: The index path of the cell that was deselected.
     func spreadsheetView(_ spreadsheetView: SpreadsheetView, didDeselectItemAt indexPath: IndexPath)
 }
+//
+//extension SpreadsheetViewDelegate {
+//    public func spreadsheetView(_ spreadsheetView: SpreadsheetView, shouldHighlightItemAt indexPath: IndexPath) -> Bool { return true }
+//    public func spreadsheetView(_ spreadsheetView: SpreadsheetView, didHighlightItemAt indexPath: IndexPath) {}
+//    public func spreadsheetView(_ spreadsheetView: SpreadsheetView, didUnhighlightItemAt indexPath: IndexPath) {}
+//    public func spreadsheetView(_ spreadsheetView: SpreadsheetView, shouldSelectItemAt indexPath: IndexPath) -> Bool { return true }
+//    public func spreadsheetView(_ spreadsheetView: SpreadsheetView, shouldDeselectItemAt indexPath: IndexPath) -> Bool { return true }
+//    public func spreadsheetView(_ spreadsheetView: SpreadsheetView, didSelectItemAt indexPath: IndexPath) {}
+//    public func spreadsheetView(_ spreadsheetView: SpreadsheetView, didDeselectItemAt indexPath: IndexPath) {}
+//}
 
-extension SpreadsheetViewDelegate {
-    public func spreadsheetView(_ spreadsheetView: SpreadsheetView, shouldHighlightItemAt indexPath: IndexPath) -> Bool { return true }
-    public func spreadsheetView(_ spreadsheetView: SpreadsheetView, didHighlightItemAt indexPath: IndexPath) {}
-    public func spreadsheetView(_ spreadsheetView: SpreadsheetView, didUnhighlightItemAt indexPath: IndexPath) {}
-    public func spreadsheetView(_ spreadsheetView: SpreadsheetView, shouldSelectItemAt indexPath: IndexPath) -> Bool { return true }
-    public func spreadsheetView(_ spreadsheetView: SpreadsheetView, shouldDeselectItemAt indexPath: IndexPath) -> Bool { return true }
-    public func spreadsheetView(_ spreadsheetView: SpreadsheetView, didSelectItemAt indexPath: IndexPath) {}
-    public func spreadsheetView(_ spreadsheetView: SpreadsheetView, didDeselectItemAt indexPath: IndexPath) {}
-}

@@ -1,0 +1,2 @@
+#!/bin/sh
+pod spec lint --use-libraries --verbose --skip-import-validation --allow-warnings --sources='http://gitlab.leoao-inc.com/Lefit_iOS_Organization/PrivatePods.git,https://github.com/CocoaPods/Specs.git'

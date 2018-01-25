@@ -9,7 +9,7 @@
 import UIKit
 
 /// Implement this protocol to provide data to an `SpreadsheetView`.
-public protocol SpreadsheetViewDataSource: class {
+@objc public protocol SpreadsheetViewDataSource {
     /// Asks your data source object for the number of columns in the spreadsheet view.
     ///
     /// - Parameter spreadsheetView: The spreadsheet view requesting this information.
@@ -20,7 +20,7 @@ public protocol SpreadsheetViewDataSource: class {
     /// - Parameter spreadsheetView: The spreadsheet view requesting this information.
     /// - Returns: The number of rows in `spreadsheetView`.
     func numberOfRows(in spreadsheetView: SpreadsheetView) -> Int
-
+    
     /// Asks the data source for the width to use for a row in a specified location.
     ///
     /// - Parameters:
@@ -35,7 +35,7 @@ public protocol SpreadsheetViewDataSource: class {
     ///   - row: The index of the row.
     /// - Returns: A nonnegative floating-point value that specifies the height (in points) that row should be.
     func spreadsheetView(_ spreadsheetView: SpreadsheetView, heightForRow row: Int) -> CGFloat
-
+    
     /// Asks your data source object for the view that corresponds to the specified cell in the spreadsheetView.
     /// The cell that is returned must be retrieved from a call to `dequeueReusableCell(withReuseIdentifier:for:)`
     ///
@@ -45,7 +45,7 @@ public protocol SpreadsheetViewDataSource: class {
     /// - Returns: A cell object to be displayed at the location.
     ///   If you return nil from this method, the blank cell will be displayed by default.
     func spreadsheetView(_ spreadsheetView: SpreadsheetView, cellForItemAt indexPath: IndexPath) -> Cell?
-
+    
     /// Asks your data source object for the array of cell ranges that indicate the range of merged cells in the spreadsheetView.
     ///
     /// - Parameter spreadsheetView: The spreadsheet view requesting this information.
@@ -62,10 +62,11 @@ public protocol SpreadsheetViewDataSource: class {
     /// - Returns: The number of rows to be frozen
     func frozenRows(in spreadsheetView: SpreadsheetView) -> Int
 }
+//
+//extension SpreadsheetViewDataSource {
+//    public func spreadsheetView(_ spreadsheetView: SpreadsheetView, cellForItemAt indexPath: IndexPath) -> Cell? { return nil }
+//    public func mergedCells(in spreadsheetView: SpreadsheetView) -> [CellRange] { return [] }
+//    public func frozenColumns(in spreadsheetView: SpreadsheetView) -> Int { return 0 }
+//    public func frozenRows(in spreadsheetView: SpreadsheetView) -> Int { return 0 }
+//}
 
-extension SpreadsheetViewDataSource {
-    public func spreadsheetView(_ spreadsheetView: SpreadsheetView, cellForItemAt indexPath: IndexPath) -> Cell? { return nil }
-    public func mergedCells(in spreadsheetView: SpreadsheetView) -> [CellRange] { return [] }
-    public func frozenColumns(in spreadsheetView: SpreadsheetView) -> Int { return 0 }
-    public func frozenRows(in spreadsheetView: SpreadsheetView) -> Int { return 0 }
-}

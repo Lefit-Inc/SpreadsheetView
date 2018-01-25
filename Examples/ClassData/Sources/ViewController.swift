@@ -10,6 +10,8 @@ import UIKit
 import SpreadsheetView
 
 class ViewController: UIViewController, SpreadsheetViewDataSource, SpreadsheetViewDelegate {
+    
+    
     @IBOutlet weak var spreadsheetView: SpreadsheetView!
     var header = [String]()
     var data = [[String]]()
@@ -95,6 +97,14 @@ class ViewController: UIViewController, SpreadsheetViewDataSource, SpreadsheetVi
             return cell
         }
     }
+    
+    func mergedCells(in spreadsheetView: SpreadsheetView) -> [CellRange] {
+        return []
+    }
+    
+    func frozenColumns(in spreadsheetView: SpreadsheetView) -> Int {
+        return 0
+    }
 
     /// Delegate
 
@@ -112,4 +122,13 @@ class ViewController: UIViewController, SpreadsheetViewDataSource, SpreadsheetVi
             spreadsheetView.reloadData()
         }
     }
+
+    public func spreadsheetView(_ spreadsheetView: SpreadsheetView, shouldHighlightItemAt indexPath: IndexPath) -> Bool { return true }
+    public func spreadsheetView(_ spreadsheetView: SpreadsheetView, didHighlightItemAt indexPath: IndexPath) {}
+    public func spreadsheetView(_ spreadsheetView: SpreadsheetView, didUnhighlightItemAt indexPath: IndexPath) {}
+    public func spreadsheetView(_ spreadsheetView: SpreadsheetView, shouldSelectItemAt indexPath: IndexPath) -> Bool { return true }
+    public func spreadsheetView(_ spreadsheetView: SpreadsheetView, shouldDeselectItemAt indexPath: IndexPath) -> Bool { return true }
+    public func spreadsheetView(_ spreadsheetView: SpreadsheetView, didDeselectItemAt indexPath: IndexPath) {}
+    
+    
 }
